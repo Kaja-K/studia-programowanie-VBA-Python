@@ -1,0 +1,7 @@
+kot: 3
+jest: 2
+bardzo: 1
+fajnym: 1
+zwierzeciem: 1
+mialczy: 1
+gruby: 1
