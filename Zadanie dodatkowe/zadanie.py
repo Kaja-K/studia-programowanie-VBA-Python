@@ -2,10 +2,13 @@ slownik = {}
 
 
 def wyswietl_slownik():
-    print("Lista studentów:")
+    # Sprawdzanie, czy słownik nie jest pusty.
     if not slownik:
-        print("Brak studentów.")
+        print("Brak studentów na liście.")
     else:
+        print("Lista studentów:")
+
+        # Wyświetlanie imion i ocen studentów.
         for student, ocena in slownik.items():
             print(f"{student} - {ocena}")
 
@@ -13,21 +16,44 @@ def wyswietl_slownik():
 def dodaj_do_slownika():
     try:
         imie_nazwisko = input("Podaj imię i nazwisko studenta:\n>")
+
+        t_n = ""
+
+        # Sprawdzanie, czy student już istnieje w słowniku.
+        if imie_nazwisko in slownik:
+            print("Czy chcesz nadpisać ocenę? ")
+            t_n = input("Wpisz tak lub nie\n>")
+
+            # Sprawdzanie, czy użytkownik chce nadpisać ocenę.
+            if t_n != "tak":
+                return
+
         ocena = float(input("Podaj ocenę:\n>"))
 
-        while not (0 <= ocena <= 5):
-            print("Nieprawidłowa ocena. Podaj ocenę od 0 do 5.")
+        # Sprawdzenie czy ocena mieści się w zakresie od 2 do 5.5.
+        while not (2 <= ocena <= 5.5):
+            print("Nieprawidłowa ocena. Podaj ocenę od 2 do 5.5.")
             ocena = float(input(">"))
 
+        # Dodawanie nowego studenta do słownika.
         slownik[imie_nazwisko] = ocena
-        print("Dodano studenta.")
+
+        # Informacja o dodaniu lub zmianie oceny studenta.
+        if t_n == "tak":
+            print("Zmieniono ocenę")
+        else:
+            print("Dodano studenta.")
+
     except ValueError:
         print("Błąd wartości")
 
 
 def usun_ze_slownika():
     imie_nazwisko = input("Podaj imię i nazwisko studenta do usunięcia:\n>")
+
+    # Sprawdzanie, czy student istnieje w słowniku.
     if imie_nazwisko in slownik:
+        # Usuwanie studenta.
         del slownik[imie_nazwisko]
         print("Usunięto studenta.")
     else:
@@ -36,6 +62,8 @@ def usun_ze_slownika():
 
 def znajdz_i_wyswietl_klucz():
     imie_nazwisko = input("Podaj imię i nazwisko studenta do znalezienia:\n>")
+
+    # Sprawdzanie, czy student istnieje w słowniku.
     if imie_nazwisko in slownik:
         print(f"{imie_nazwisko} - {slownik[imie_nazwisko]}")
     else:
@@ -47,10 +75,12 @@ def znajdz_i_wyswietl_klucze_po_wartosci():
         ocena = float(input("Podaj ocenę do wyszukania studentów:\n>"))
         znalezione = []
 
+        # Poszukiwaniu studentów o danej ocenie.
         for student, wartosc in slownik.items():
             if wartosc == ocena:
                 znalezione.append(student)
 
+        # Wyświetlanie znalezionych studentów.
         if znalezione:
             print(f"Studenci o ocenie {ocena}:")
             for student in znalezione:
@@ -62,6 +92,7 @@ def znajdz_i_wyswietl_klucze_po_wartosci():
         print("Błąd wartości")
 
 
+# Menu programu.
 while True:
     print("\nWitaj w systemie obsługi studentów. Dostępne opcje:")
     print("1. Pokaż listę studentów")
@@ -73,6 +104,7 @@ while True:
 
     wybor = input(">")
 
+    # Obsługa wyboru użytkownika
     if wybor == "1":
         wyswietl_slownik()
     elif wybor == "2":

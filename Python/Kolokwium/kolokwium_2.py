@@ -1,23 +1,23 @@
-# def suma(x, y):
-#     lista = []
-#     for i in range(x, y + 1):
-#         if i % 2 != 0:
-#             lista.append(i)
-#     return sum(lista)
+def suma(x, y):
+    lista = []
+    for i in range(x, y + 1):
+        if i % 2 != 0:
+            lista.append(i)
+    return sum(lista)
 
 
-# try:
-#     x = int(input("podaj x: "))
-#     y = int(input("podaj y: "))
-#     if x < y:
-#         nx = x
-#         ny = y
-#     else:
-#         nx = y
-#         ny = x
-#     print(suma(nx, ny))
-# except ValueError:
-#     print("error")
+try:
+    x = int(input("podaj x: "))
+    y = int(input("podaj y: "))
+    if x < y:
+        nx = x
+        ny = y
+    else:
+        nx = y
+        ny = x
+    print(suma(nx, ny))
+except ValueError:
+    print("error")
 
 
 def kelwin(lista):
